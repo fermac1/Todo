@@ -9,6 +9,17 @@
 const todoStore = useTodoStore()
 const { todos } = storeToRefs(todoStore)
 
+useHead({
+  title: 'Nuxt - All Todos',
+  meta: [
+    { name: 'description', content: 'All Todos' },
+    { name: 'keywords', content: 'Nuxt, Todos' }
+  ],
+  script: [
+    
+  ]
+})
+
 </script>
 
 <style scoped>
