@@ -14,7 +14,11 @@ definePageMeta({
 const todoStore = useTodoStore()
 const { todos } = storeToRefs(todoStore)
 
-const recentTodos = computed(()=>todos.value.slice(-3).reverse())
+const recentTodos = computed(()=>todos?.value?.slice(-3)?.reverse())
+
+onMounted(async() => {
+  await todoStore.fetchTodos()
+})
 </script>
 
 <style>

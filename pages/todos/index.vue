@@ -16,8 +16,14 @@ useHead({
     { name: 'keywords', content: 'Nuxt, Todos' }
   ],
   script: [
-    
+    {
+      innerHTML: 'console.log("All Todos Page")'
+    }
   ]
+})
+
+onMounted(async() => {
+  await todoStore.fetchTodos()
 })
 
 </script>
