@@ -13,31 +13,27 @@ export const useTodoStore = defineStore('todo', {
     }),
      
     getters: {
-        getTodoById:(state)=>(id:number)=>state.todos.find((todo)=>todo.id === id)
-    }, 
+        getTodoById: (state) => (id: number) => state.todos.find((todo) => todo.id === id)
+    },
 
     actions: {
-        addTodo(todo: { id: number, title: string, description: string, isCompleted: boolean, createdAt: string })
-        {
+        addTodo(todo: { id: number, title: string, description: string, isCompleted: boolean, createdAt: string }) {
             this.todos.push(todo);
         },
 
-        updateTodo(updateTodo: { id: number, title: string, description: string, isCompleted: boolean, createdAt: string })
-        {
+        updateTodo(updateTodo: { id: number, title: string, description: string, isCompleted: boolean, createdAt: string }) {
             const index = this.todos.findIndex((todo) => todo.id === updateTodo.id)
 
-            if (index!== -1) {
+            if (index !== -1) {
                 this.todos[index] = updateTodo;
             }
         },
 
-        deleteTodo(id: number)
-        {
-            this.todos = this.todos.filter((todo) => todo.id!==id)
+        deleteTodo(id: number) {
+            this.todos = this.todos.filter((todo) => todo.id !== id)
         },
 
-        updateMarkCompletedStatus(id: number)
-        {
+        updateMarkCompletedStatus(id: number) {
             const index = this.todos.findIndex(
                 (todo) => todo.id === id
             )
@@ -64,4 +60,4 @@ export const useTodoStore = defineStore('todo', {
             }
         }
     }
-})
+});

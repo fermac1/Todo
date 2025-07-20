@@ -1,6 +1,9 @@
 <template>
   <form @submit.prevent="handleSubmit()">
     <div>
+        <h3>{{ isEdit ? 'Edit Todo' : 'Create Todo' }}</h3>
+    </div>
+    <div>
         <label for="title">Title</label>
         <input type="text" id="title" v-model="form.title" required/>
     </div>
@@ -8,7 +11,7 @@
         <label for="description">Description</label>
         <textarea type="text" id="description" v-model="form.description" required/>
     </div>
-    <button type="submit" class="btn-success">{{ isEdit ? 'Update Todo' : 'Add Todo' }}</button>
+    <button type="submit" class="btn-success">{{ isEdit ? 'Update' : 'Add' }}</button>
   </form>
 </template>
 
@@ -46,11 +49,12 @@ watch(() => props.todo, (newTodo) => {
 })
 </script>
 
-<style>
+<style scoped>
 form{
+    width: 350px;
     background-color: #fff;
-    padding: 10px;
-    margin: 20px 0;
+    padding: 20px;
+    margin: 20px auto;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
@@ -58,10 +62,13 @@ form{
 div{
     margin-bottom: 10px;
 }
+div h3{
+    text-align: center;
+}
 label{
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 input, textarea {
@@ -70,5 +77,10 @@ input, textarea {
     border-radius: 3px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+button {
+    border-radius: 4px;
+    width: 100%;
+    background-color: #333;
 }
 </style>

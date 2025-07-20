@@ -2,7 +2,7 @@
   <div>
     <h1>{{ todo?.title }}</h1>
     <p>{{ todo?.description }}</p>
-    <hr class="my-5">
+    <!-- <hr class="my-5"> -->
 
     <p>Completed: {{ todo?.isCompleted }}</p>
     <p>Created At: {{ todo?. createdAt }}</p>
