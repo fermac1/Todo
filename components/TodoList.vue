@@ -1,18 +1,20 @@
 <template>
-  <ul>
-    <li v-for="(todo, index) in todos" :key="index">
-        <NuxtLink :to="`/todos/${todo.id}`">{{todo.title}}</NuxtLink>
-        <span>{{ todo.isCompleted}}</span>
-    </li>
-    <!-- <li>
-        <NuxtLink :to="`/todos/${1}`">{{'Title 2'}}</NuxtLink>
-        <span>{{ 'not completed' }}</span>
-    </li>
-    <li>
-        <NuxtLink :to="`/todos/${1}`">{{'Title 3'}}</NuxtLink>
-        <span>{{ 'completed' }}</span>
-    </li> -->
-  </ul>
+    <div>
+        <ul>
+          <li v-for="(todo, index) in todos" :key="index">
+              <NuxtLink :to="`/todos/${todo.id}`">{{todo.title}}</NuxtLink>
+              <span>{{ todo?.isCompleted ? 'Done ' : 'In progress' }}</span>
+          </li>
+          <!-- <li>
+              <NuxtLink :to="`/todos/${1}`">{{'Title 2'}}</NuxtLink>
+              <span>{{ 'not completed' }}</span>
+          </li>
+          <li>
+              <NuxtLink :to="`/todos/${1}`">{{'Title 3'}}</NuxtLink>
+              <span>{{ 'completed' }}</span>
+          </li> -->
+        </ul>
+    </div>
 </template>
 
 <script lang="ts" setup>
