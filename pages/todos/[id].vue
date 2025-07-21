@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>{{ todo?.title }}</h1>
     <p>{{ todo?.description }}</p>
     <!-- <hr class="my-5"> -->
@@ -34,6 +34,14 @@ useSeoMeta({
 </script>
 
 <style>
+.container{
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 1); */
+  margin: 20px auto;
+  width: 700px;
+}
 .btn {
     background-color: #007bff;
     color: #fff;
