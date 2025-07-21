@@ -14,7 +14,8 @@ definePageMeta({
 const todoStore = useTodoStore()
 const { todos } = storeToRefs(todoStore)
 
-const recentTodos = computed(()=>todos.value.slice(-3).reverse())
+// const recentTodos = computed(()=>todos.value.slice(-3).reverse())
+const recentTodos = computed(()=>todos.value)
 </script>
 
 <style scoped>
@@ -24,7 +25,7 @@ const recentTodos = computed(()=>todos.value.slice(-3).reverse())
   border-radius: 5px;
   /* box-shadow: 0 0 5px rgba(0, 0, 0, 1); */
   margin: 20px auto;
-  width: 500px;
+  width: 700px;
 }
 </style>
 
