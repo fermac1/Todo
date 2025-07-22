@@ -29,6 +29,14 @@ useHead({
   border-radius: 5px;
   /* box-shadow: 0 0 5px rgba(0, 0, 0, 1); */
   margin: 20px auto;
-  width: 500px;
+  max-width: 500px;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .container {
+    max-width: 250px;
+    width: 100%;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <h1>Welcome To Our Todo App!</h1>
+    <h1>My Todos</h1>
 </template>
 
 <script lang="ts" setup>

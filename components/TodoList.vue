@@ -1,21 +1,31 @@
 <template>
     <div>
-        <div v-if="todos.length === 0"> No Todos</div>
+        <div class="no-todos" v-if="todos.length === 0"> No Todos</div>
         <ul>
           <!-- <li v-for="(todo, index) in todos" :key="index"> -->
            <li  v-for="(todo, index) in paginatedTodos"
-        :key="todo.id">
-            <NuxtLink :to="`/todos/${todo.id}`">
+            :key="todo.id">
+            <span class="status-icon">
+                <!-- {{ todo.isCompleted ? '✅' : '⏳' }} -->
+                  <!-- {{ todo.isCompleted ? '✅' : <Icon name="eos-icons:hourglass" /> }} -->
+                  <Icon v-if="todo.isCompleted" name="mdi:checkbox-marked"  class="icon completed-icon" />
+                 <Icon v-else name="eos-icons:hourglass"  class="icon in-progress-icon" />
+            </span>
+
+            <NuxtLink :to="`/todos/${todo.id}`" class="todo-title">
                 {{todo.title}}
             </NuxtLink>
-              <span>{{ todo?.isCompleted ? 'Complete ' : 'In progress' }}</span>
+              <!-- <span>{{ todo?.isCompleted ? 'Complete ' : 'In progress' }}</span> -->
+                <NuxtLink :to="`/todos/edit/${todo?.id}`" class="edit-icon">
+                    <Icon name="tdesign:edit" />
+                </NuxtLink>
           </li>
    
         </ul>
 
         <!-- pagination -->
         <div v-if="totalPages > 1" class="pagination">
-            <button @click="prevPage" :disabled="currentPage === 1">Prev</button>
+            <button @click="prevPage" :class="{ active: currentPage !== 1 }" :disabled="currentPage === 1">Prev</button>
 
             <button
                 v-for="page in totalPages"
@@ -26,7 +36,7 @@
                 {{ page }}
             </button>
 
-            <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+            <button @click="nextPage" :class="{ active: currentPage !== totalPages }" :disabled="currentPage === totalPages">Next</button>
         </div>
 
     </div>
@@ -69,6 +79,12 @@ function goToPage(page: number) {
 </script>
 
 <style scoped>
+.no-todos {
+  text-align: center;
+  color: grey;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
 ul{
     list-style: none;
     padding: 0;
@@ -85,6 +101,29 @@ li{
 }
 li:hover{
     background-color: #f1f1f1;
+}
+
+.todo-title {
+  flex: 1;
+  text-align: left;
+  color: #333;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+.todo-title:hover {
+  text-decoration: none;
+}
+
+
+/* Completed: Green */
+.completed-icon {
+  color: #4CAF50; /* Material green */
+}
+
+/* In Progress: Amber/Orange */
+.in-progress-icon {
+  color: #FFA000; /* Material amber */
 }
 
 .pagination {
@@ -107,5 +146,31 @@ li:hover{
 .pagination button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.pagination button:hover:not(.disabled):not(.active) {
+  background-color: #f0f0f0;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  li span {
+    margin-top: 5px;
+  }
+
+  .pagination {
+    gap: 5px;
+  }
+
+  .pagination button {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
 }
 </style>
