@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="page-wrapper">
         <div class="no-todos" v-if="todos.length === 0"> No Todos</div>
         <ul>
           <!-- <li v-for="(todo, index) in todos" :key="index"> -->
@@ -8,17 +8,17 @@
             <span class="status-icon">
                 <!-- {{ todo.isCompleted ? '✅' : '⏳' }} -->
                   <!-- {{ todo.isCompleted ? '✅' : <Icon name="eos-icons:hourglass" /> }} -->
-                  <Icon v-if="todo.isCompleted" name="mdi:checkbox-marked"  class="icon completed-icon" />
-                 <Icon v-else name="eos-icons:hourglass"  class="icon in-progress-icon" />
+                <Icon v-if="todo.isCompleted" name="mdi:checkbox-marked"  class="icon completed-icon" />
+                <Icon v-else name="eos-icons:hourglass"  class="icon in-progress-icon" />
             </span>
 
             <NuxtLink :to="`/todos/${todo.id}`" class="todo-title">
                 {{todo.title}}
             </NuxtLink>
               <!-- <span>{{ todo?.isCompleted ? 'Complete ' : 'In progress' }}</span> -->
-                <NuxtLink :to="`/todos/edit/${todo?.id}`" class="edit-icon">
-                    <Icon name="tdesign:edit" />
-                </NuxtLink>
+            <NuxtLink :to="`/todos/edit/${todo?.id}`" class="edit-icon">
+                <Icon name="tdesign:edit" />
+            </NuxtLink>
           </li>
    
         </ul>
@@ -51,7 +51,7 @@ const props = defineProps({
         }
 })
 
-    const currentPage = ref(1)
+const currentPage = ref(1)
 const pageSize = 5
 
 const totalPages = computed(() => Math.ceil(props.todos.length / pageSize) || Math.ceil(props.todos.length / pageSize))
@@ -79,6 +79,12 @@ function goToPage(page: number) {
 </script>
 
 <style scoped>
+.page-wrapper {
+  box-sizing: border-box;
+  padding: 1rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .no-todos {
   text-align: center;
   color: grey;
@@ -87,7 +93,9 @@ function goToPage(page: number) {
 }
 ul{
     list-style: none;
-    padding: 0;
+    padding: 0 10px;
+    max-width: 800px;
+    width: 100%;
 }
 li{
     margin-bottom: 10px;
@@ -98,6 +106,9 @@ li{
     background-color: #f9f9f9;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+
+      word-break: break-word;
+  overflow-wrap: break-word;
 }
 li:hover{
     background-color: #f1f1f1;
@@ -154,8 +165,16 @@ li:hover{
 
 /* Responsive styles */
 @media (max-width: 600px) {
+   .page-wrapper {
+    max-width: 250px;
+    width: 100%;
+  }
+  ul{
+    width: 100%;
+    /* width: 300px; */
+  }
   li {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
     text-align: left;
   }

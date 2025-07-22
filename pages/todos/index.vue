@@ -29,13 +29,20 @@ useHead({
   border-radius: 5px;
   /* box-shadow: 0 0 5px rgba(0, 0, 0, 1); */
   margin: 20px auto;
-  max-width: 500px;
+  width: 700px;
 }
 
 /* Responsive styles */
-@media (max-width: 600px) {
+@media (min-width: 480px) and (max-width: 768px) {
   .container {
     max-width: 250px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 200px;
     width: 100%;
   }
 }
