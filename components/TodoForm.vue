@@ -51,7 +51,7 @@ watch(() => props.todo, (newTodo) => {
 
 <style scoped>
 form{
-    width: 350px;
+    max-width: 350px;
     background-color: #fff;
     padding: 20px;
     margin: 20px auto;
@@ -82,5 +82,13 @@ button {
     border-radius: 4px;
     width: 100%;
     background-color: #333;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  form {
+    max-width: 250px;
+    width: 100%;
+  }
 }
 </style>
